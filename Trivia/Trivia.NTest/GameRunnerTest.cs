@@ -92,12 +92,12 @@ namespace Trivia.NTest
             private int DICERESULT = 6;
             private int SUCCESS = 6;
 
-            public override int TiradaDeDados()
+            public override int RollDice()
             {
                 return DICERESULT;
             }
 
-            public override int AciertoLaPregunta()
+            public override int Match()
             {
                 return SUCCESS;
             }

@@ -19,7 +19,11 @@ Na nana na
 
 -- ---------------------
 [Alex Vazquez](https://github.com/avperillo)
+
 [Carlos Tirado](https://github.com/catirado)
+
 [Hugo Mariscal](https://github.com/humasae)
+
 [Luis Echeverria](https://github.com/echeve)
+
 [Alberto Ortiz](https://github.com/albertortizcape)

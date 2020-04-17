@@ -8,19 +8,23 @@ namespace Trivia
 
         public static void Main(string[] args)
         {
+            MyRandom rand = new MyRandom();
+            ExecuteTriviaGame(rand);
+        }
+
+        public static void ExecuteTriviaGame(MyRandom rand)
+        {
             var aGame = new Game();
 
             aGame.Add("Chet");
             aGame.Add("Pat");
             aGame.Add("Sue");
 
-            var rand = new Random();
-
             do
             {
-                aGame.Roll(rand.Next(5) + 1);
+                aGame.Roll(rand.RollDice());
 
-                if (rand.Next(9) == 7)
+                if (rand.Match() == 7)
                 {
                     _notAWinner = aGame.WrongAnswer();
                 }
@@ -29,6 +33,21 @@ namespace Trivia
                     _notAWinner = aGame.WasCorrectlyAnswered();
                 }
             } while (_notAWinner);
+        }
+    }
+
+    public class MyRandom
+    {
+        private Random _rand = new Random();
+
+        public virtual int RollDice()
+        {
+            return _rand.Next(5) + 1;
+        }
+
+        public virtual int Match()
+        {
+            return _rand.Next(9);
         }
     }
 }

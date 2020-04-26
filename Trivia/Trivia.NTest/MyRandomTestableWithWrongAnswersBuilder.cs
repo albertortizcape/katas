@@ -9,7 +9,6 @@ namespace Trivia.NTest
     public class MyRandomTestableWithWrongAnswersBuilder
     {
         private int _diceValue;
-        private int _successValue;
 
         public MyRandomTestableWithWrongAnswersBuilder WithDiceValue(int diceValue)
         {
@@ -17,15 +16,9 @@ namespace Trivia.NTest
             return this;
         }
 
-        public MyRandomTestableWithWrongAnswersBuilder WithSuccessValue(int successValue)
-        {
-            _successValue = successValue;
-            return this;
-        }
-
         public MyRandomTestableWithWrongAnswers Build()
         {
-            return new MyRandomTestableWithWrongAnswers(_diceValue, _successValue);
+            return new MyRandomTestableWithWrongAnswers(_diceValue);
         }
     }
 }

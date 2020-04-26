@@ -31,13 +31,11 @@ namespace Trivia.NTest
     public class MyRandomTestableWithWrongAnswers : MyRandom
     {
         private int DICERESULT;
-        private int SUCCESS;
         private int NumSuccess = 0;
 
-        public MyRandomTestableWithWrongAnswers(int diceValue, int successValue)
+        public MyRandomTestableWithWrongAnswers(int diceValue)
         {
             DICERESULT = diceValue;
-            SUCCESS = successValue;
         }
 
         public override int RollDice()
@@ -48,7 +46,36 @@ namespace Trivia.NTest
         public override int Match()
         {
             NumSuccess++;
-            return NumSuccess % 3 == 0? 7 : SUCCESS;
+            return NumSuccess % 7 == 0 ? 7 : new Random().Next(6);
+        }
+    }
+
+    public class MyRandomTestableWithIncrementalValues : MyRandom
+    {
+        private int DiceResult = 0;
+        private int NumSuccess = 0;
+
+        public override int RollDice()
+        {
+            return NextDiceResult();
+        }
+
+        public int NextDiceResult()
+        {
+            if (DiceResult >= 6)
+            {
+                DiceResult = 0;
+            }
+
+            DiceResult++;
+
+            return DiceResult;
+        }
+
+        public override int Match()
+        {
+            NumSuccess++;
+            return NumSuccess % 7 == 0 ? 7 : new Random().Next(6);
         }
     }
 }

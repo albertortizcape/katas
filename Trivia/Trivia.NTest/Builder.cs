@@ -10,5 +10,6 @@ namespace Trivia.NTest
     {
         public static MyRandomTestableBuilder Random => new MyRandomTestableBuilder();
         public static MyRandomTestableWithWrongAnswersBuilder RandomWithWrong => new MyRandomTestableWithWrongAnswersBuilder();
+        public static MyRandomTestableWithIncrementalValuesBuilder RandomIncrementalValues => new MyRandomTestableWithIncrementalValuesBuilder(); 
     }
 }

@@ -24,9 +24,13 @@ namespace Trivia.NTest
 
             var diceValue_6 = 6;
             var successValue_6 = 6;
-            MyRandomTestable randomResults = new MyRandomTestable(diceValue_6, successValue_6);
+            var random = Builder.Random
+                .WithDiceValue(diceValue_6)
+                .WithSuccessValue(successValue_6)
+                .Build();
+
             Game aGame = new Game();
-            GameRunner.ExecuteTriviaGame(randomResults, aGame);
+            GameRunner.ExecuteTriviaGame(random, aGame);
 
             string actualExecution = sb.ToString();
             Approvals.Verify(actualExecution);
@@ -43,9 +47,13 @@ namespace Trivia.NTest
 
             var diceValue_6 = 6;
             var successValue_6 = 6;
-            MyRandomTestableWithWrongAnswers randomResults = new MyRandomTestableWithWrongAnswers(diceValue_6, successValue_6);
+            var random = Builder.RandomWithWrong
+                .WithDiceValue(diceValue_6)
+                .WithSuccessValue(successValue_6)
+                .Build();
+
             Game aGame = new Game();
-            GameRunner.ExecuteTriviaGame(randomResults, aGame);
+            GameRunner.ExecuteTriviaGame(random, aGame);
 
             string actualExecution = sb.ToString();
             Approvals.Verify(actualExecution);
@@ -77,7 +85,11 @@ namespace Trivia.NTest
 
         private object ExecuteTriviaGame(int diceValue, int successValue)
         {
-            MyRandomTestable randomResult = new MyRandomTestable(diceValue, successValue);
+            var randomResult = Builder.Random
+                .WithDiceValue(diceValue)
+                .WithSuccessValue(successValue)
+                .Build();
+
             AmplifiedGame aGame = new AmplifiedGame();
 
             GameRunner.ExecuteTriviaGame(randomResult, aGame);
@@ -87,10 +99,14 @@ namespace Trivia.NTest
 
         private object ExecuteTriviaGameWithWrongAnswers(int diceValue, int successValue)
         {
-            MyRandomTestableWithWrongAnswers randomResult = new MyRandomTestableWithWrongAnswers(diceValue, successValue);
+            var randomWithWrong = Builder.RandomWithWrong
+                .WithDiceValue(diceValue)
+                .WithSuccessValue(successValue)
+                .Build();
+
             AmplifiedGame aGame = new AmplifiedGame();
 
-            GameRunner.ExecuteTriviaGame(randomResult, aGame);
+            GameRunner.ExecuteTriviaGame(randomWithWrong, aGame);
 
             return aGame.GameStatus();
         }

@@ -103,7 +103,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builder.cs" />
     <Compile Include="GameRunnerTest.cs" />
+    <Compile Include="MyRandomTestableBuilder.cs" />
+    <Compile Include="MyRandomTestableWithWrongAnswersBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomTestable.cs" />
   </ItemGroup>

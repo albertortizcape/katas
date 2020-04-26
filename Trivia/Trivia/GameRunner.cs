@@ -9,13 +9,13 @@ namespace Trivia
         public static void Main(string[] args)
         {
             MyRandom rand = new MyRandom();
-            ExecuteTriviaGame(rand);
-        }
-
-        public static void ExecuteTriviaGame(MyRandom rand)
-        {
             var aGame = new Game();
 
+            ExecuteTriviaGame(rand, aGame);
+        }
+
+        public static void ExecuteTriviaGame(MyRandom rand, Game aGame)
+        {
             aGame.Add("Chet");
             aGame.Add("Pat");
             aGame.Add("Sue");

@@ -1,0 +1,5 @@
+[6,6] => { 'players': [
+{'player': 'Chet','pnalty': 'False','place': '0','purses': '6'},
+{'player': 'Pat','pnalty': 'False','place': '6','purses': '5'},
+{'player': 'Sue','pnalty': 'False','place': '6','purses': '5'},]}
+

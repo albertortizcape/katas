@@ -3,94 +3,43 @@ using System.IO;
 using System.Text;
 using ApprovalTests;
 using ApprovalTests.Reporters;
-using FluentAssertions;
 using Xunit;
 
 namespace Trivia.NTest
 {
-    //[UseReporter(typeof(DiffReporter))]
+    [UseReporter(typeof(DiffReporter))]
     public class game_runner_should
     {
-        private string OLDRESULT;
-
-        public game_runner_should()
-        {
-            ReadFirstTestCaseSample();
-        }
-
-        private void ReadFirstTestCaseSample()
-        {
-            using (StreamReader sr = new StreamReader("./test/Redirect_01.txt"))
-            {
-                OLDRESULT = sr.ReadToEnd();
-            }
-        }
-
-        //private static void RedirectConsoleOutput()
-        //{
-        //    FileStream ostrm;
-        //    StreamWriter writer;
-        //    TextWriter oldOut = Console.Out;
-        //    try
-        //    {
-        //        ostrm = new FileStream("./Redirect.txt", FileMode.OpenOrCreate, FileAccess.Write);
-        //        writer = new StreamWriter(ostrm);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Cannot open Redirect.txt for writing");
-        //        Console.WriteLine(e.Message);
-        //        return;
-        //    }
-
-        //    Console.SetOut(writer);
-
-        //    writer.Close();
-        //    ostrm.Close();
-        //}
-
-        //
         [Fact]
-        public void TestMethod1()
+        public void same_file_with_allways_result_6()
         {
-            //FileStream ostrm;
-            StringWriter writer;
-            TextWriter oldOut = Console.Out;
+            // This comes from @catirado glidedrose solution
+            // First execution: You need to copy the result to:
+            // game_runner_should.same_file_with_allways_result_6.approved.txt
+
             StringBuilder sb = new StringBuilder();
+            Console.SetOut(new StringWriter(sb));
+            //Console.SetIn(new StringReader("a\n"));
 
-            try
-            {
-                writer = new StringWriter(sb);
-
-                //ostrm = new FileStream("./Redirect.txt", FileMode.OpenOrCreate, FileAccess.Write);
-                //writer = new StreamWriter(ostrm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Cannot open Redirect.txt for writing");
-                Console.WriteLine(e.Message);
-                return;
-            }
-            Console.SetOut(writer);
-
-
-            MyRandomTestable randomResults = new MyRandomTestable();
+            var diceValue_6 = 6;
+            var successValue_6 = 6;
+            MyRandomTestable randomResults = new MyRandomTestable(diceValue_6, successValue_6);
             GameRunner.ExecuteTriviaGame(randomResults);
 
-            Console.SetOut(oldOut);
-            writer.Close();
-            //ostrm.Close();
-
             string actualExecution = sb.ToString();
-            actualExecution.Should().BeEquivalentTo(OLDRESULT);
-
-            //Approvals.Verify(actualExecution);
+            Approvals.Verify(actualExecution);
         }
 
         public class MyRandomTestable : MyRandom
         {
-            private int DICERESULT = 6;
-            private int SUCCESS = 6;
+            private int DICERESULT;
+            private int SUCCESS;
+
+            public MyRandomTestable(int diceValue, int successValue)
+            {
+                DICERESULT = diceValue;
+                SUCCESS = successValue;
+            }
 
             public override int RollDice()
             {
